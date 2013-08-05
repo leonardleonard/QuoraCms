@@ -1,0 +1,46 @@
+<include file="Global:header_top" />
+<script type="text/javascript">
+var register_code='@#$setting.register_code#@';
+var is_invite_register='@#$setting.is_invite_register#@';
+function swing(id)
+	{
+		$('#'+id).animate({marginLeft:"+=30"},200).animate({marginLeft:"-=60"},150).animate({marginLeft:"+=60"},100).animate({marginLeft:"-=60"},100).animate({marginLeft:"+=30"},100);
+	}
+</script>
+<script type="text/javascript" src="__PUBLIC__/account.js"></script>
+<div id="main">
+<form id="register_div" name="register_form" method="post" action="<php>$addr=$setting['ismailverify']==1?'mail_verify':'register_submit';echo U('Account/'.$addr)</php>">
+	<div id="register_div_top">
+    	<div class="account_header">注册本站</div>
+        <input type="text" id="reg_name" maxlength="9" class="account_input" name="name" alt="用户名" value="用户名" />
+    </div>
+    <div id="register_div_mid">
+    	<div id="input_wrapper">
+        	<input type="text" id="reg_email" class="account_input" name="email" style="margin-left:10px" alt="邮箱" value="邮箱" />
+        </div>
+        <php>
+        if($setting['is_invite_register']==1)
+        	{
+            	echo '<div id="invite_code">
+                        <input type="text" id="invite_code_input" class="account_input" name="invite_code" style="margin-left:10px" alt="邀请码" value="邀请码" />
+                    </div>';
+            }
+        if($setting['register_code']==1){echo '<div id="input_code">
+        	<input type="text" id="reg_code" class="account_code focus" name="code" style="margin-left:10px" alt="验证码" value="验证码" />
+            <img src="'.U('Account/verify').'" onclick="refresh_code()" id="code" />
+        </div>';}
+        </php>
+    </div>
+    <input type="hidden" name="province" id="province" />
+    <input type="hidden" name="city" id="city" />
+    <input type="hidden" name="county" id="county" />
+    <input type="hidden" name="ha" value="@#$ha#@" />
+    <div id="register_div_bottom">
+    	<a id="pwd_a">密码</a><input type="password" name="pwd" class="account_pwd" id="reg_pwd" />
+        <div class="clear"></div>
+        <div class="submit" id="register_submit">注 册</div>
+    </div>
+    <div class="clear"></div>
+</form>
+</div>
+<include file="Global:footer" />

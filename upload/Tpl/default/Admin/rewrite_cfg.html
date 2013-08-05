@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLIC__/css/admin.css" rel="stylesheet" />
+<script src="__PUBLIC__/jquery.js" type="text/javascript"></script>
+<script src="__PUBLIC__/admin.js" type="text/javascript"></script>
+<title>QuoraCms后台管理面板登录-Powered by QuoraCms!</title>
+</head>
+
+<body>
+<div class="title">URL伪静态配置：</div>
+<div class="h"></div>
+<form action="<php>echo U('Admin/rewrite_cfg_receive');</php>" method="post" id="cfg_form">
+<div class="tip">网站URL模式(请根据您当前的服务器环境将程序根目录下的url_rewrite_rule下对应的重写规则复制至程序根目录内(设置完后请清除缓存)</div>
+<div class="tip">
+<a class="radio"><input type="radio" name="url_model" value="0" <php>if(C('URL_MODEL')==0){echo 'checked="checked"';}</php> />普通模式(eg:?m=module&a=action)</a>
+<a class="radio"><input type="radio" name="url_model" value="1" <php>if(C('URL_MODEL')==1){echo 'checked="checked"';}</php>/>Pathinfo模式(eg:index.php/m/module/a/action)</a>	
+<a class="radio"><input type="radio" name="url_model" value="2" <php>if(C('URL_MODEL')==2){echo 'checked="checked"';}</php>/>Rewrite模式(eg:/m/module/a/action.html)</a>	
+</div>
+<div class="tip">伪静态后缀设置：</div>
+<input type="text" name="url_html_suffix" class="input" value="@#$Think.CONFIG.URL_HTML_SUFFIX#@" />
+
+</form>
+<div class="rect_button" id="cfg_sub">保存</div><br />
+<br />
+
+</body>
+</html>

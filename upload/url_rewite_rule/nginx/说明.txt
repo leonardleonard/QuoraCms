@@ -1,0 +1,6 @@
+请在Nginx的Nginx.conf中做如下配置：
+	location / {
+      if (!-e $request_filename){
+           rewrite ^/(.*)$ /index.php/$1 last;
+      }
+}

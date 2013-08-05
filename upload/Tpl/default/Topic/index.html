@@ -1,0 +1,60 @@
+<include file="Global:header_top" />
+<script type="text/javascript" src="__PUBLIC__/masonry.js"></script>
+<script type="text/javascript" src="__PUBLIC__/rotate.js"></script>
+<script type="text/javascript" src="__PUBLIC__/topic.js"></script>
+<div id="main">
+	<div id="topic_head">
+    <h1 id="t_info">话题列表</h1>
+        <div class="tab">
+              <a href="<php>echo U('Topic/index');</php>" id="topic_tab1">所有话题</a>
+              <a href="<php>if($user['id']==NULL){echo U('Account/login');}else{echo U('Topic/me');}</php>" id="topic_tab2">我关注的</a>
+              <div class="<php>echo $totalcount<10?($totalcount>0?'topic_new_lessnine':'none'):'topic_new_morenine';</php>"><php>echo $totalcount<100?$totalcount:'99+'</php></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="w"></div>
+    <div id="topic_list">
+    <php>
+     if(!$topic_list)
+    	{
+        	echo ' <div id="question_error">暂无话题</div>';
+        }else{
+    foreach($topic_list as $k=>$v)
+    	{
+            $des=$v['describe']?$v['describe']:'暂无详细描述，可点击"编辑话题"来编辑此内容';   
+        	echo '
+            	<div class="topic_wrapper">
+                    <div class="topic_top">';
+                    $user['id']==1&&print '<div class="admin_tip">删除此话题</div>';
+                    echo '</div>
+                    <div class="topic_mid">
+                        <a class="topic_name" href="'.U('Topic/view?tid='.$v['id']).'">'.$v['name'].'</a>
+                        <div class="topic_focus">';if(in_array($v['id'],$my_focus)){echo '取消关注';}else{echo '+ 关注';} echo '</div>
+                        <div class="clear"></div>
+                        <div class="topic_describe">
+                            <img src="__PUBLIC__/css/quot_left.png" />
+                            <a>'.$des.'</a>
+                            <img src="__PUBLIC__/css/quot_right.png" />
+                        </div>
+                        <textarea class="topic_edit_textarea">'.$des.'</textarea>
+                        <div class="topic_opt">
+                            <div class="topic_questioncount">'.$sign.'数:'.$v['questioncount'].'</div>';
+                             $user['id']!=NULL&&print '<div class="topic_edit">编辑话题</div>';
+                           echo ' <input type="hidden" class="topic_id" value="'.$v['id'].'" />
+                            <div class="topic_focuscount">关注者:'.$v['focuscount'].'</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="topic_bottom"></div>
+                </div>
+            ';
+        }
+        }
+    </php>
+    </div>
+    <div class="clear"></div>
+    <div id="page" align="center">
+    @#$page#@
+    </div>  
+</div>
+<include file="Global:footer" />

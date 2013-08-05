@@ -1,0 +1,34 @@
+<include file="Global:header_top" />
+<include file="User:nav" />
+<div id="main">
+    <div id="main_letter">
+    <php>
+    foreach($letterview as $k=>$v)
+        {
+        echo '<div class="letter_wrapper">
+            <div class="letter_view">
+            '.$v['content'].'
+            </div>
+            <div class="avatar_wrapper">
+                 <img src="__PUBLIC__'; echo get_avatar($v['from'],'min'); echo '" class="avatar" />
+                 <img src="__PUBLIC__/css/avatar_cover.png" class="avatar_cover" />
+                 <input type="hidden" value="'.$v['from'].'" class="avatar_hidden" /> 
+            </div>
+            <div class="clear"></div>
+            <div class="letter_opt">
+                <div class="letter_opt_time">发送时间: '.time_mode($v['addtime']).'</div>
+                <div class="clear"></div>
+            </div>
+        </div>';
+        }
+    </php>
+    </div>
+<textarea id="letterview_textarea" class="focus" title="回复TA:">回复TA:</textarea>
+<div class="reply_btn" id="letter_reply">回复</div>
+<input type="hidden" id="letterid" value="<php>echo $_GET['lid'];</php>" />
+<input type="hidden" id="from" value="<php>echo $letterview[0]['from'];</php>" />
+<input type="hidden" id="to" value="<php>echo $letterview[0]['to'];</php>" />
+<input type="hidden" id="avatar_input" value="__PUBLIC__<php>echo get_avatar($letterview[0]['to'],'min')</php>" />   
+</div>
+<div id="loading_small"></div>
+<include file="Global:footer" />

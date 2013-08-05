@@ -1,0 +1,90 @@
+<include file="Global:header_top" />
+<script type="text/javascript" src="__PUBLIC__/index.js"></script>
+	<div id="main">
+    	<div id="index_left">
+            <div id="c_left">
+            <php>
+                foreach(F('category') as $k=>$v)
+                    {
+                        if($k%2==0)
+                            {
+                                echo '<div class="c_wrapper">
+                    <div class="c_wrapper_inner" style="background-color:'.$v['color'].'">
+                        <img src="__PUBLIC__/thumbs/thumb_'.$v['thumb'].'" class="c_thumb" />
+                        <div class="c_detail"></div>
+                        <a href="'.U('Index/clist?cid='.$v['id']).'" class="c_arrow" style="background-color:'.$v['color'].'"></a>
+                        <div class="c_info">
+                            <h2>'.$v['title'].'</h2>
+                            <h3>'.getsubstr($v['describe'],0,36).'</h3>
+                        </div>
+                    </div>
+                    <div class="c_specific">
+                        <h2>'.$v['title'].'</h2>
+                            <h3>'.$v['describe'].'</h3>
+                    </div>
+                    <div class="c_shadow"></div>
+                </div>';
+                            }
+                    }
+            </php>    
+            </div>
+            <div id="c_right">    
+                <php>
+                foreach(F('category') as $k=>$v)
+                    {
+                        if($k%2==1)
+                            {
+                                echo '<div class="c_wrapper">
+                    <div class="c_wrapper_inner" style="background-color:'.$v['color'].'">
+                        <img src="__PUBLIC__/thumbs/thumb_'.$v['thumb'].'" class="c_thumb" />
+                        <div class="c_detail"></div>
+                        <a href="'.U('Index/clist?cid='.$v['id']).'" class="c_arrow" style="background-color:'.$v['color'].'"></a>
+                        <div class="c_info">
+                            <h2>'.$v['title'].'</h2>
+                            <h3>'.getsubstr($v['describe'],0,36).'</h3>
+                        </div>
+                    </div>
+                    <div class="c_specific">
+                        <h2>'.$v['title'].'</h2>
+                            <h3>'.$v['describe'].'</h3>
+                    </div>
+                    <div class="c_shadow"></div>
+                </div>';
+                            }
+                    }
+            </php>
+            </div>
+            <div class="clear"></div>
+            <a id="enter_all" href="<php>echo U('Index/all');</php>" onclick="this.style.background='#eee';this.innerHTML='跳转中...'">进入@#$sign#@中心</a>
+        </div>
+        <div id="index_right">
+                <div class="side_wrapper">
+                    <div class="side_title">热门推荐</div>
+                    <php>echo S('side_recommend_question');</php>
+                </div>
+                <div class="side_wrapper">
+                    <div class="side_title">热门用户<a href="<php>echo U('User/ranklist');</php>" target="_blank" class="user_more">更多>></a></div>
+                    <php>
+                    if(S('side_hot_user')==0)
+                        {
+                            echo '<div id="no_focus_user">暂无热门用户</div>';
+                        }else{
+                                foreach(S('side_hot_user') as $k=>$v)
+                                    {
+                                        echo '<div class="avatar_wrapper avatar_left">
+                                             <img src="__PUBLIC__/'.get_avatar($v['id'],'min').'" class="avatar" />
+                                             <img src="__PUBLIC__/css/avatar_cover.png" class="avatar_cover" />
+                                             <input type="hidden" value="'.$v['id'].'" class="avatar_hidden" /> 
+                                        </div>';
+                                    }
+                        }
+                     </php>   
+                    <div class="clear"></div>
+                </div>
+                <div class="side_wrapper">
+                    <div class="side_title"><php>echo $setting['is_quora']==0?'待回复的帖子':'待解决的问题'</php></div>
+                    <php>echo S('side_no_reply');</php>
+                </div>  
+    		</div>    
+    </div>
+<include file="Global:footer" />

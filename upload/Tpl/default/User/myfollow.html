@@ -1,0 +1,44 @@
+<include file="Global:header_top" />
+<include file="User:nav" />	
+    <div id="main">
+    	<div id="main_left">  
+             <php>
+             if($follow==NULL)
+             	{
+                	echo '<div id="question_error">您暂无关注的人</div>';
+                }else{
+             	foreach($follow as $k=>$v)
+                	{
+                    	echo '
+                        	<div class="q_wrapper">
+							 <div class="avatar_wrapper" >
+								  <img src="__PUBLIC__/'.get_avatar($v['id'],'min').'" class="avatar" />
+								  <img src="__PUBLIC__/css/avatar_cover.png" class="avatar_cover" />
+								  <input type="hidden" value="'.$v['id'].'" class="avatar_hidden" />
+							 </div>
+							 <div class="q_list">
+								<div class="follow_title">'.$v['username'].'于'.time_mode($v['addtime']).$v['actionname'].'了'.$sign.'：</div>
+								<a href="'.U('Question/view?qid='.$v['qid']).'" target="_blank">'.$v['questiontitle'].'</a>
+							 </div>
+						  </div>
+                        ';
+                    }
+               }
+             </php>
+             <div id="page" align="center">
+             	@#$page#@
+             </div>
+         </div>
+         <div id="main_right">
+             <div class="side_wrapper">
+                <div class="side_title">热门推荐</div>
+                <php>echo S('side_recommend_question');</php>
+             </div>
+             
+             <div class="side_wrapper">
+                <div class="side_title"><php>echo $setting['is_quora']==0?'待回复的帖子':'待解决的问题'</php></div>
+                <php>echo S('side_no_reply');</php>
+             </div>
+         </div>   
+	</div>
+<include file="Global:footer" />

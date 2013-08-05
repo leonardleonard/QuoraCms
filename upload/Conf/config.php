@@ -1,0 +1,1 @@
+<?php $basic_config	=	require 'config.inc.php';$user_config = array ('url_model' => 0,'url_html_suffix' => '.html',);return array_merge($basic_config,$user_config);?>

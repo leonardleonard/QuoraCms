@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__PUBLIC__/css/admin.css" rel="stylesheet" />
+<script src="__PUBLIC__/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+var url='__URL__@#$Think.CONFIG.url_pathinfo_depr#@';
+</script>
+<script src="__PUBLIC__/admin.js" type="text/javascript"></script>
+<title>QuoraCms后台管理面板-Powered by QuoraCms!</title>
+</head>
+
+<body id="main_body">
+	<div id="nav">
+    	<div id="nav_top">
+        	<img src="__PUBLIC__/css/main_logo.png" id="main_logo" />
+            <div id="top_panel">
+            	<a href="__SITE__" target="_blank">进入前台</a>|<a href="<php>echo U('Admin/off');</php>">退出管理</a>
+            </div>
+        </div>
+        <a class="list_green" name="zhandianshouye">站点首页</a>
+        <div id="zhandianshouye" class="child">
+        	<a name="basic_info">基本信息</a>
+            <a name="site_cfg">站点配置</a>
+            <a name="rewrite_cfg">伪静态配置</a>
+            <a name="ucenter_cfg">ucenter整合</a>
+    	</div>
+        <a class="list_green" name="neirongpeizhi">内容配置</a>
+        <div id="neirongpeizhi" class="child">
+        	<a name="category_cfg">分类设置</a>
+            <a name="filter_keywords">关键词过滤</a>
+            <a name="email_cfg">邮件配置</a>
+            <a name="question_list">问题列表</a>
+    	</div>
+        <a class="list_green" name="qingchuhuancun">清除缓存</a>
+        <div id="qingchuhuancun" class="child">
+        	<a name="clear_all">清除全部缓存</a>
+            <a name="clear_category">清除分类缓存</a>
+            <a name="clear_setting">清除站长设置缓存</a>
+    	</div>
+    <iframe id="iframe" frameborder="0" allowtransparency="1" scrolling="auto" src="<php>echo U('Admin/env_check');</php>"></iframe>
+</body>
+</html>

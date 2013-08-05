@@ -1,0 +1,57 @@
+<include file="Global:header_top" />
+<script type="text/javascript" src="__PUBLIC__/ueditor/editor_config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/editor.min.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/ueditor/themes/default/ueditor.css" />
+<script type="text/javascript">
+var category_index=null;
+</script>
+<script type="text/javascript" src="__PUBLIC__/question.js"></script>
+	<div id="main">
+    	<div id="main_left">
+        	<div class="question_info"><php>echo $setting['is_quora']==0?'发表您的帖子':'提出您的问题'</php></div>
+            <form action="<php>echo U('Question/receive');</php>" method="post" id="pub_form">
+                <input type="text" maxlength="40" class="focus" id="publish_question_title" name="pub_title" value="输入<php>echo $sign;</php>标题..." title="输入<php>echo $sign;</php>标题..." />
+                <div id="select_category">
+                	<div id="ca">选择分类</div>
+                </div>
+                <div class="clear"></div>
+                <script type="text/plain" id="editor" name="pub_detail"><php>echo $sign;</php>详细描述...</script>
+               	<div id="topic_div">
+                	<div id="add_topic_div">
+                    	<input maxlength="8" id="search_topic" name="topic" type="text" /><div class="s_btn" id="add_topic_btn">添加话题</div>
+                    </div>
+                </div>
+				<input type="hidden" name="pub_detail" id="detail_hidden" />
+                <input type="hidden" name="category" id="category_hidden" />
+                <input type="hidden" value="" name="keywords" id="keywords" />
+                <input type="hidden" name="ha" value="@#$ha#@" />
+                <div class="rect_button" id="pub_button"><img src="__PUBLIC__/css/pub_bg.png" />发布</div>
+            </form>
+        </div>
+        <div id="loading_small"></div>
+        <div id="category">
+        	<div id="category_arrow"></div>
+            <php>
+            foreach(F('category') as $k=>$v)
+            	{
+                	echo '<a name="'.$v['id'].'" class="category_list">'.$v['title'].'</a>';
+                }
+            </php>   
+        </div>
+        <div id="side">
+        	<div id="pub_help">
+            <strong>小提示：</strong>
+            	<ul>
+                	<li>标题应该直接，不要在标题中使用与<php>echo $sign;</php>无关话语，不要使用口语化情绪化词语，这些对解决问题毫无帮助 </li>
+                    <li>所有提交的内容都应该有确切的答案，而不仅仅是被讨论</li>
+                    <li>杂乱的文字会直接降低潜在回答者的兴趣，请尽量使用简洁清晰的语言来描述</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+	<div id="blank" class="none"></div>
+    <script type="text/javascript">
+		var editor = new UE.ui.Editor();
+		editor.render('editor');
+	</script>
+<include file="Global:footer" />

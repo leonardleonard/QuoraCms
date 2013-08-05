@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--
+QuoraCms-免费的社会化问答系统，社会化问答最佳解决方案
+官方网站：http://www.quoracms.com
+-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="<php>echo $keywords==NULL?$setting['site_keywords']:$keywords;</php>" />
+	<meta name="description" content="<php>echo $description==NULL?$setting['site_description']:$description;</php>"  />
+    <meta name="author" content="http://www.quoracms.com" />
+    <meta name="copyright" content="http://www.quoracms.com" />
+    <link rel="shortcut icon" href="__PUBLIC__/css/favicon.ico" />
+    <link href="__PUBLIC__/css/core.css" rel="stylesheet" />
+    <script src="__PUBLIC__/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="__PUBLIC__/qcsBox.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/jquery.autocomplete.min.js"></script>
+	<link rel="stylesheet" href="__PUBLIC__/css/jquery.autocomplete.css" type="text/css" />
+    <script type="text/javascript">
+		var site='__SITE__';
+		var public='__PUBLIC__';
+		var uid='@#$user['id']#@';
+		var sign='@#$sign#@';
+		var name='@#$user['name']#@';
+		function tip(html)
+			{
+				var top_tip=$('#top_tip');
+				top_tip.css({top:-36});
+				$('#alert_mid').html(html);
+				top_tip.stop(true,true);
+				top_tip.animate({top:0},400).delay(2000).animate({top:-36},400);
+			}
+		function html_encode(str)  
+			{  
+			  var s = "";  
+			  if (str.length == 0) return "";  
+			  s = str.replace(/&/g, "&gt;");  
+			  s = s.replace(/</g, "&lt;");  
+			  s = s.replace(/>/g, "&gt;");  
+			  s = s.replace(/ /g, "&nbsp;");  
+			  s = s.replace(/\'/g, "&#39;");  
+			  s = s.replace(/\"/g, "&quot;");  
+			  s = s.replace(/\n/g, "<br>");  
+			  return s;  
+			}
+		function u(action)
+			{
+				var module=arguments[1]||'<php>echo MODULE_NAME;</php>';  
+				return site+'/index.php?m='+module+'&a='+action;	
+			}		  	
+	</script>
+    <script src="__PUBLIC__/global.js" type="text/javascript"></script>
+<title><php>echo ($user['newmsg']!=0||$user['newnotice']!=0)?'('.($user['newmsg']+$user['newnotice']).')'.$title:$title;</php></title>
+</head>
+
+<body>
+	<!--[if lte IE 6]>
+    <div id="ie6"></div>
+     <![endif]-->
+	<div id="header">
+    	<a href="__SITE__" id="logo"></a>
+        <form action="__SITE__/index.php" id="search_f" method="get" name="search_f">
+        	<input type="hidden" name="m" value="Question"/><input type="hidden" name="a" value="search"/>
+            <input type="text" speech="speech" class="focus" title="搜的一下，你就知道..." value="搜的一下，你就知道..." x-webkit-speech="x-webkit-speech" id="search_input" name="words" />
+            <div id="ask">搜 索</div>
+        </form>
+        <a id="question_link" href="__SITE__">分类</a>
+        <a id="topic_link" href="<php>echo U('Topic/index');</php>" <php>if(MODULE_NAME=='Topic'){echo 'class="white"';}</php>>话题</a>
+        <ul id="header_right">
+            <?php
+            if($user!=NULL)
+            	{
+                	echo '
+                    <li id="publish_li"><a class="a_panel ';if(ACTION_NAME=='publish'){echo 'nav_white';} echo '" href="'.U('Question/publish').'"><div id="publish"></div></a></li>
+                    <li id="msg_li"><a class="a_panel" ><div id="msg"></div></a></li>
+                    <li id="user_li"><a class="a_panel ';if(MODULE_NAME=='User'){echo 'nav_white';} echo '" href="'.U('User/index').'"><div id="user"></div></a></li>
+                    <li id="notice_li"><a class="a_panel" id="notice_a" ><div id="notice"></div></a></li>';
+                    if($user['id']==1){echo '<li><a class="a_panel" href="'.U('Admin/login').'" target="_blank" ><div id="more"></div></a></li>';}
+                    echo '<li id="logout_li"><a class="a_panel"><div id="logout"></div></a></li>
+                    ';
+                }else{
+                		echo '<li><a href="'.U('Account/login').'" class="';
+                        if(ACTION_NAME=='login'){echo 'a_hover';}else{echo 'right_a';}
+                        echo '">登录</a></li><li><a href="'.U('Account/register').'" class="';
+                        if(ACTION_NAME=='register'){echo 'a_hover';}else{echo 'right_a';}
+                        echo '">注册</a></li>';
+                	}
+               ?> 
+        </ul>
+	</div>
+    <php>
+   if($user['newmsg']!=0)
+   		{
+        	echo '<script type="text/javascript" src="__PUBLIC__/flash_msg.js"></script>';
+        }
+        
+   if($user['newnotice']!=0)
+   		{
+        	echo '<script type="text/javascript">var j=0;var n=$("#notice");function flash_notice(){ 
+	$.browser.msie?(j%2==0?document.getElementById("notice").style.display="none":document.getElementById("notice").style.display="block"):(j%2==0?n.animate({opacity:0},200):n.animate({opacity:1},200));j++;} fno=setInterval("flash_notice()",400);</script>';
+        }    
+    </php>
+<div id="top_tip" align="center">
+	<div id="alert_left"></div>
+    <div id="alert_mid"></div>
+    <div id="alert_right"></div>
+</div>
+<div id="cate_div">
+	<php>
+    foreach(F('category') as $k=>$v)
+    	{
+            echo '<a href="'.U('Index/clist?cid='.$v['id']).'">'.$v['title'].'</a>';
+        }
+    </php>
+</div>
+<div id="newmsg_div" tabindex="2">
+	<php>
+    	echo Session::get('message')==NULL?'<div class="no_notice">暂无新站内信...</div>':Session::get('message');
+    </php>
+</div>
+<div id="notice_div" tabindex="2">
+    <php>
+        echo Session::get('inform')==NULL?'<div class="no_notice">暂无新通知...</div>':($user['newnotice']!=0?Session::get('inform').'<div id="clear_notice">清除全部'.$user['newnotice'].'条通知</div>':Session::get('inform'));
+   </php>    
+</div>

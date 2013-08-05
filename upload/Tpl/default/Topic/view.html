@@ -1,0 +1,98 @@
+<include file="Global:header_top" />
+<script type="text/javascript" src="__PUBLIC__/topic.js"></script>
+    <div id="main">
+    <div id="topic_info">话题: <php>echo $topic?$topic['name']:'暂无该话题'</php></div>
+    	<div id="topic_inf" class="t_head">
+        	<div id="guanzhu_num">关注者：<php>echo $topic?$topic['focuscount']:0</php>人</div>
+            <div id="wenti_num">@#$sign#@数<php>echo $topic?$topic['questioncount']:0</php>个</div>
+            <div id="topic_create_time">创建时间:<php>echo time_mode($topic['addtime']);</php></div>
+        </div>
+        <div class="clear l"></div>
+        <div id="main_left">
+        	<div id="question_list">
+                <php>
+            	if($question_list==NULL)
+                	{
+                    	echo '<div id="question_error">该话题下暂无'.$sign.'</div>';
+                    }else{
+            	foreach($question_list as $k=>$v)
+                	{
+                    $solve=$v['issolve']==1?'已解决':'未解决';
+                    	echo '
+                        	<div class="q_wrapper">
+                                <div class="avatar_wrapper" >
+                                    <img src="__PUBLIC__'; echo get_avatar($v['uid'],'min');echo '" class="avatar" />
+                                    <img src="__PUBLIC__/css/avatar_cover.png" class="avatar_cover" />
+                                    <input type="hidden" value="'.$v['uid'].'" class="avatar_hidden" />  
+                                </div>
+                                <div class="q_list">
+                                <a href="'.U('Question/view?qid='.$v['id']).'" target="'.$setting['link_open'].'">'.$v['title'].'</a>
+                                    <div class="opt">
+                                        <div class="q_option_left"></div>
+                                        <div class="q_option_mid">
+                                            时间：'.time_mode($v['pubtime']).'<img src="__PUBLIC__/css/devider.png" />
+                                            浏览:'.$v['viewcount'].'<img src="__PUBLIC__/css/devider.png" />
+                                           	回复:'.$v['answercount'].'<img src="__PUBLIC__/css/devider.png" />
+                                            关注:'.$v['focuscount'].'<img src="__PUBLIC__/css/devider.png" />
+                                            推荐:'.$v['recommendcount'].'<img src="__PUBLIC__/css/devider.png" />
+                                            状态：'.$solve.'
+                                        </div>
+                                        <div class="q_option_right"></div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        ';
+                    }
+                    }
+            </php>
+            </div>
+            <div id="page" align="center">
+            @#$page#@
+            </div>
+        </div>
+        <div id="main_right">
+        	<div class="side_wrapper">
+            	<div class="side_title">
+                	该话题描述
+                </div>
+                <div class="side_con"><php>echo $topic['describe']==''?'该话题暂无详细描述':$topic['describe'];</php></div>
+            </div>
+            <div class="side_wrapper">
+            	<div class="side_title">
+                	尚未编辑的话题
+                </div>
+                <php>echo S('unedit_topic')==''?'<div class="side_con">暂无未编辑的话题</div>':S('unedit_topic');</php>
+            </div>
+            <div class="side_wrapper">
+            	<div class="side_title">
+                	关注该话题的人
+                </div>
+                <php>
+                    if($topic_uid==0)
+                        {
+                            echo '<div id="no_focus_user">暂无用户关注该话题</div>';
+                        }else{
+                                foreach($topic_uid as $k=>$v)
+                                    {
+                                        echo '<div class="avatar_wrapper avatar_left">
+                                             <img src="__PUBLIC__/'.get_avatar($v['uid'],'min').'" class="avatar" />
+                                             <img src="__PUBLIC__/css/avatar_cover.png" class="avatar_cover" />
+                                             <input type="hidden" value="'.$v['uid'].'" class="avatar_hidden" /> 
+                                        </div>';
+                                    }
+                        }
+             	</php>
+                <div class="clear"></div>
+            </div>
+            <div class="side_wrapper">
+            	<div class="side_title">
+                	热门话题
+                </div>
+                <php>echo S('hot_topic');</php>
+            </div>
+        </div>   
+    </div>
+
+
+<include file="Global:footer" />

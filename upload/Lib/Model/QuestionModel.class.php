@@ -1,0 +1,53 @@
+<?php
+class QuestionModel extends RelationModel{
+		protected $_link=array(
+		'answer'=>array(
+			'mapping_type'=>HAS_MANY,
+			'mapping_name'=>'answer',
+			'foreign_key'=>'qid',
+		),
+		'recommend'=>array(
+			'mapping_type'=>HAS_MANY,
+			'mapping_name'=>'recommend',
+			'foreign_key'=>'qid',
+		),
+		'replyagainst'=>array(
+			'mapping_type'=>HAS_MANY,
+			'mapping_name'=>'replyagainst',
+			'foreign_key'=>'qid',
+		),
+		'replyagree'=>array(
+			'mapping_type'=>HAS_MANY,
+			'mapping_name'=>'replyagree',
+			'foreign_key'=>'qid',
+		),
+		'replyuseless'=>array(
+			'mapping_type'=>HAS_MANY,
+			'mapping_name'=>'replyuseless',
+			'foreign_key'=>'qid',
+		),
+		'topic'=>array(
+			'mapping_type'=>MANY_TO_MANY,
+			'mapping_name'=>'topic',
+			'relation_foreign_key'=>'topicid',
+			'foreign_key'=>'questionid',
+			'relation_table'=>'tqid',
+		),
+		'action'=>array(
+			'mapping_type'=>HAS_MANY,
+			'mapping_name'=>'action',
+			'foreign_key'=>'qid',
+		),
+		'focus'=>array(
+			'mapping_type'=>HAS_MANY,
+			'mapping_name'=>'focus',
+			'foreign_key'=>'qid',
+		),
+		'searchwords'=>array(
+			'mapping_type'=>HAS_MANY,
+			'mapping_name'=>'searchwords',
+			'foreign_key'=>'qid',
+		),
+	);
+}
+?>

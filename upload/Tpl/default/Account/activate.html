@@ -1,0 +1,25 @@
+<include file="Global:header_top" />
+<script type="text/javascript">
+var refer_url='<php>echo $_SERVER['HTTP_REFERER'];</php>';
+function swing(id)
+	{
+		$('#'+id).animate({marginLeft:"+=30"},200).animate({marginLeft:"-=60"},150).animate({marginLeft:"+=60"},100).animate({marginLeft:"-=60"},100).animate({marginLeft:"+=30"},100);
+	}
+</script>
+<script type="text/javascript" src="__PUBLIC__/account.js"></script>
+<div id="main">
+<div id="login_div">
+	<div class="account_header">激活账户</div>
+    <div id="mail_verify">您在本站的账号需激活才能继续<br /><br />用户名：@#$info.1#@</div>
+    <input type="hidden" name="province" id="province" />
+    <input type="hidden" name="city" id="city" />
+    <input type="hidden" name="county" id="county" />
+    <a id="activate_a">点此激活账户</a>
+</div>
+<div id="tip">
+	<div id="tip_left"></div>
+    <div id="tip_mid">用户名输入有误</div>
+    <div id="tip_right"></div>
+</div>
+</div>
+<include file="Global:footer" />

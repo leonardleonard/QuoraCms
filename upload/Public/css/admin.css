@@ -1,0 +1,70 @@
+/* --------------------------------------------------------------
+服务QQ: 452605524
+服务Email:452605524@qq.com
+Copyright © 2012-2013 QuoraCms WorkGroup All Rights Reserved.
+------------------------------------------------------------------*/
+*{ font-size:14px; font-family:"微软雅黑"}
+input:focus{ outline:none}
+textarea:focus{ outline:none}
+textarea{ resize:none;overflow:auto}
+html{ height:100%}
+#main_body{ margin:0; height:100%; background:url(bg-radial-gradient.gif) #F0F0F0 230px 0px no-repeat}
+#login_body{ background:#474E56; height:100%; margin:0}
+#main{width: 100%;height: 100%;background: url(admin_bg.jpg) no-repeat center center;position: absolute;bottom: 0px;top: 0px;}
+#logo{ position:absolute; left:50%; margin-left:-223px; top:50%; margin-top:-150px}
+#login_panel{ position:absolute; left:50%; margin-left:-255px; top:50%; margin-top:35px}
+.input_text{ width:206px; height:42px; background-image:url(admin_login.png); background-repeat: no-repeat; background-position: -8px -13px; background-color:transparent; border:0px; text-indent:8px; color:#888; margin-right:13px; float:left; line-height:42px;}
+#login_submit{ width:102px; height:42px; background-image:url(admin_login.png); background-position:-8px -64px; float:left; cursor:pointer}
+#login_submit:hover{ background-position:-8px -114px;}
+#error{ width:208px; height:40px; background:url(admin_login.png) -8px -220px; line-height:28px; position:absolute; text-indent:32px; display:none}
+#nav{ position:absolute; left:0; top:0; background:url(bg-body.gif); width:230px; height:100%}
+#nav_top{ height:197px; background:url(bg-sidebar.gif) no-repeat;}
+#main_logo{ margin-top:40px; margin-bottom:40px;}
+#top_panel{ width:100%; color:#ccc; text-align:center;font-size:12px;}
+#top_panel a{ color:#ccc; text-decoration:none; font-size:12px; margin-left:10px; margin-right:10px}
+#top_panel a:hover{color:#FFF}
+.list_green{ display:block; width:191px; height:33px; background:url(list_green.gif); margin-left:24px; text-align:right; padding-right:15px; line-height:33px; color:#FFF; cursor:pointer; margin-bottom:15px; margin-top:10px}
+.list_green:hover{ background:url(bg-menu-item-current.gif); color:#000}
+#iframe{ position:absolute; left:230px; top:0; height:100%}
+.child{ width:230px; text-align:right; display:none}
+.child a{ display:block; width:215px; font-size:12px; color:#CCC; padding-right:15px; height:38px; line-height:38px; cursor:pointer}
+.child a:hover{ background:url(menu-current-arrow.gif) right no-repeat; color:#FFF}
+.child_a_hover{display:block; width:215px; font-size:12px; color:#fff; padding-right:15px; height:38px; line-height:38px; cursor:pointer; background:url(menu-current-arrow.gif) right no-repeat; }
+.tip{ margin:5px 0px 12px 20px}
+.input{ margin-left:20px; text-indent:12px; color:#333; font-size:13px; line-height:26px; width:212px; height:26px; border:0px; background-image:url(sprites.png); background-color:transparent; background-position:-1px -657px; margin-bottom:15px;}
+.color{ margin-left:20px; text-indent:12px; border:1px solid #ccc; height:18px; width:90px; margin-bottom:15px; border-radius:15px}
+textarea{ border-top:1px solid #A8A8A8; border-left:1px solid #a8a8a8; border-bottom:1px solid #ddd; border-right:1px solid #ddd; margin-left:20px; width:420px; height:80px; margin-bottom:15px; background:#fff; border-radius:5px}
+.del_cate{ color:#F30; text-decoration:underline; cursor:pointer;font-size:12px; float:right}
+/*.add_cate{ color:#F30; text-decoration:underline; cursor:pointer;font-size:12px; margin-left:15px;display:block; width:960px; float:left; height:28px; background:url(extra.png); line-height:28px; text-align:center; margin-bottom:10px; border:1px solid #bbb; border-radius:5px;}*/
+.add_cate{ float:left}
+.rect_button{ width:100px; height:35px; background-image:url(button.png); text-align:center; line-height:30px; text-shadow:0px 1px #FFF; color:#666; margin-left:40px; margin-top:15px; cursor:pointer;}
+.rect_button:hover{ background-position:-110px 0px; color:#999}
+.rect_button:active{ background-position:-220px 0px; color:#333; line-height:32px}
+.radio{ margin-right:20px; cursor:pointer}
+.title{ font-weight:bold; font-size:16px; border-bottom:1px solid #CCC; height:30px; text-indent:15px; width:100%;}
+.h{ width:100%; height:0; border-top:1px solid #FFF}
+#admin_table{ margin:15px; border-right:1px solid #ccc;border-top:1px solid #ccc;background:#fff;}
+#admin_table td{ border-left:1px solid #ccc;border-bottom:1px solid #ccc; padding-top:5px; padding-bottom:5px; height:35px;text-align:center;  font-size:12px; color:#666}
+#admin_table tr:hover{ background:#f5f5f5}
+#admin_table td:hover{ background:#e2e2e2; color:#333}
+.t1{ width:285px; padding-left:7px; padding-right:7px}
+.t2{ width:110px;}
+.t3{ width:80px}
+.t4{ width:40px}
+#admin_table a{ font-size:12px; text-decoration:none; color:#666}
+#admin_table a:hover{ text-decoration:underline}
+#admin_table span{ margin-left:10px; cursor:pointer}
+#page{ margin-bottom:20px; margin-top:20px; width:100%}
+#page a{ background:url(page_button.png); text-decoration:none; font-size:10px; border-top:1px solid #C9C9C9; border-left:1px solid #BBBBBB; border-right:1px solid #B9B9B9; border-bottom:1px solid #AFAFAF; font-family:Verdana, Geneva, sans-serif; padding:4px 4px 5px 4px; color:#717171; font-weight:bold; margin-left:5px; border-radius:3px; text-shadow:0px 1px 0px white;}
+#page a:hover{ background:#FFF}
+.current{ background:#E6995E;padding:3px 7px 4px 7px; border:1px solid #d6894e;font-size:10px;font-family:Verdana, Geneva, sans-serif; margin-left:5px; color:#FFF; font-weight:bold; border-radius:3px; text-shadow:none;}
+.small{ font-size:13px; margin-top:10px; color: #F60}
+.clear_btn{ margin-left:20px; margin-top:20px; float:left}
+#clear_info{ float:left; margin-left:10px; font-size:12px; margin-top:28px; color: #C30}
+.cate_wrapper{ cursor: move; border:1px solid #bbb;float:left; padding-right:20px;padding-top:15px; background:#f0f0f0; margin-left:20px; border-radius:3px; margin-bottom:20px;}
+.cate_wrapper:hover{ background:#eaeaea}
+.td3 img{ border:0px}
+.upload_thumb{ margin-left:10px}
+.cate_sub{ margin-bottom:20px;}
+.clear{ clear:both}
+#weibo{ position:absolute; right:0; top:37px}

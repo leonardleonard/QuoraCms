@@ -1,0 +1,57 @@
+<include file="Global:header_top" />
+
+<script>
+var url='__URL__';
+var cis=<php>echo $_GET['cid'];</php>;
+</script>
+<script type="text/javascript" src="__PUBLIC__/index.js"></script>
+    <div id="main">
+    <img src="__PUBLIC__/css/loading_max.gif" id="loading_max" />
+    	<div id="topic_info">全部<php>echo $sign;</php></div>
+    	<ul id="topic_ul_list" class="topic_view_header">
+            	<php>
+                if($user!=NULL)
+                	{
+                    	echo '<li class="button_press ql" title="focus_question">关注</li><li class="button_round ql" title="all_question">全部</li>';
+                    }else{
+                    echo '<li class="button_press ql" title="all_question">全部</li>';
+                     }
+                </php>
+                <li class="button_round ql" title="hot_question">热门</li>
+                <li class="button_round ql" title="recommend_question">推荐</li>
+         </ul>
+        <div class="clear l"></div>
+        <div id="main_left">
+        	<div id="question_list">
+        	<php>
+            	foreach($question_list as $k=>$v)
+                	{
+                    	echo '
+                        	<div class="q_wrapper">
+                                <div class="avatar_wrapper" >
+                                    <img src="__PUBLIC__/css/05_avatar_small.jpg" class="avatar" />
+                                    <img src="__PUBLIC__/css/avatar_cover.png" class="avatar_cover" /> 
+                                </div>
+                                <div class="q_list">
+                                <a href=".U('Question/view?qid='.$v['id']).'" target="'.$setting['link_open'].'">'.$v['title'].'</a>
+                                    <div class="opt">
+                                        <div class="q_option_left"></div>
+                                        <div class="q_option_mid">
+                                            时间：'.time_mode($v['pubtime']).'<img src="__PUBLIC__/css/devider.png" />
+                                            浏览:'.$v['viewcount'].'<img src="__PUBLIC__/css/devider.png" />
+                                           	回复:'.$v['answercount'].'<img src="__PUBLIC__/css/devider.png" />
+                                            关注:'.$v['focuscount'].'<img src="__PUBLIC__/css/devider.png" />
+                                            推荐:'.$v['recommendcount'].'
+                                        </div>
+                                        <div class="q_option_right"></div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        ';
+                    }
+            </php>
+    </div>
+
+
+<include file="Global:footer" />

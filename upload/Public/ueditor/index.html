@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<title>UEditor定制化</title>
+	<script type="text/javascript">
+	<!--
+		window.UEDITOR_HOME_URL = location.pathname.substr(0, location.pathname.lastIndexOf('/')) + '/';
+	//-->
+	</script>
+	<script type="text/javascript" src="editor_config.js"></script>
+	<script type="text/javascript" src="editor.js"></script>
+	<link rel="stylesheet" href="themes/default/ueditor.css" />
+</head>
+<body>
+
+<script type="text/plain" id="editor" style="width:1000px"></script>
+</body>
+<script type="text/javascript">
+    var editor = new UE.ui.Editor();
+    editor.render('editor');
+</script>
+</html>

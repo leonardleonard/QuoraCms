@@ -1,0 +1,20 @@
+<include file="Global:header_top" />
+<script type="text/javascript">
+var refer_url='<php>echo $_SERVER['HTTP_REFERER'];</php>';
+function swing(id)
+	{
+		$('#'+id).animate({marginLeft:"+=30"},200).animate({marginLeft:"-=60"},150).animate({marginLeft:"+=60"},100).animate({marginLeft:"-=60"},100).animate({marginLeft:"+=30"},100);
+	}
+</script>
+<script type="text/javascript" src="__PUBLIC__/account.js"></script>
+<div id="main">
+<div id="login_div">
+	@#$msg#@
+</div>
+<div id="tip">
+	<div id="tip_left"></div>
+    <div id="tip_mid">用户名输入有误</div>
+    <div id="tip_right"></div>
+</div>
+</div>
+<include file="Global:footer" />

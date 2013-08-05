@@ -1,0 +1,116 @@
+<include file="Global:header_top" />
+    <div id="main">
+    	<div id="topic_info">用户排行TOP10</div>
+        <div class="clear l"></div>
+		<script type="text/javascript">
+		$(document).ready(function(e) {
+			var max_score=$('#rank1 .rank_hidden:eq(0)').val();
+			var max_question=$('#rank2 .rank_hidden:eq(0)').val();
+			var max_reply=$('#rank3 .rank_hidden:eq(0)').val(); 
+			$('#rank1 .rank_wrapper').each(function(index, element) {
+                var t=$(this);
+				t.find('.rankbar_mid').animate({width:195*t.find('.rank_hidden').val()/max_score},1500)
+            });
+			$('#rank2 .rank_wrapper').each(function(index, element) {
+                var q=$(this);
+				q.find('.rankbar_mid').animate({width:195*q.find('.rank_hidden').val()/max_question},1500)
+            });
+			$('#rank3 .rank_wrapper').each(function(index, element) {
+                var a=$(this);
+				a.find('.rankbar_mid').animate({width:195*a.find('.rank_hidden').val()/max_reply},1500)
+            });
+		})
+		</script>
+       <div class="rank_div" id="rank1">
+           <div class="opt rank_opt">
+                <div class="q_option_left"></div>
+                <div class="q_option_mid">用户总积分TOP10</div>
+                <div class="q_option_right"></div>
+           </div>     
+		   <div class="clear"></div>
+           <php>
+                foreach($avatar_list_score as $k=>$v)
+                {
+                    echo '
+                   <div class="rank_wrapper">
+                        <div class="avatar_wrapper rank_avatar">
+                            <img src="__PUBLIC__'.get_avatar($v['id'],'min').'" class="avatar" />
+                            <img src="__PUBLIC__/css/avatar_cover.png" class="avatar_cover" />
+                            <input type="hidden" value="'.$v['id'].'" class="avatar_hidden">
+                        </div>
+                        <div class="rank_info">总积分:'.$v['score'].'</div>
+                        <div class="rankbar">
+                            <div class="rankbar_left"></div>
+                            <div class="rankbar_mid"></div>
+                            <div class="rankbar_right"></div>
+                        </div>
+                        <input type="hidden" value="'.$v['score'].'" class="rank_hidden" />    
+                    </div>        
+                    ';
+                }
+           </php>
+       </div>
+       
+       <div class="rank_div" id="rank2">
+       	   <div class="opt rank_opt">
+                <div class="q_option_left"></div>
+                <div class="q_option_mid">用户提问数TOP10</div>
+                <div class="q_option_right"></div>
+           </div>     
+		   <div class="clear"></div>
+           <php>
+                foreach($avatar_list_question as $k=>$v)
+                {
+                    echo '
+                   <div class="rank_wrapper">
+                        <div class="avatar_wrapper rank_avatar">
+                            <img src="__PUBLIC__'.get_avatar($v['id'],'min').'" class="avatar" />
+                            <img src="__PUBLIC__/css/avatar_cover.png" class="avatar_cover" />
+                            <input type="hidden" value="'.$v['id'].'" class="avatar_hidden">
+                        </div>
+                        <div class="rank_info">提问数:'.$v['totalpub'].'</div>
+                        <div class="rankbar">
+                            <div class="rankbar_left"></div>
+                            <div class="rankbar_mid"></div>
+                            <div class="rankbar_right"></div>
+                        </div>
+                        <input type="hidden" value="'.$v['totalpub'].'" class="rank_hidden" />    
+                    </div>        
+                    ';
+                }
+           </php>
+       </div>
+       
+       <div class="rank_div" id="rank3">
+       		<div class="opt rank_opt">
+                <div class="q_option_left"></div>
+                <div class="q_option_mid">用户回复数TOP10</div>
+                <div class="q_option_right"></div>
+           </div>     
+		   <div class="clear"></div>
+           <php>
+                foreach($avatar_list_reply as $k=>$v)
+                {
+                    echo '
+                   <div class="rank_wrapper">
+                        <div class="avatar_wrapper rank_avatar">
+                            <img src="__PUBLIC__'.get_avatar($v['id'],'min').'" class="avatar" />
+                            <img src="__PUBLIC__/css/avatar_cover.png" class="avatar_cover" />
+                            <input type="hidden" value="'.$v['id'].'" class="avatar_hidden">
+                        </div>
+                        <div class="rank_info">回答数:'.$v['totalreply'].'</div>
+                        <div class="rankbar">
+                            <div class="rankbar_left"></div>
+                            <div class="rankbar_mid"></div>
+                            <div class="rankbar_right"></div>
+                        </div>
+                        <input type="hidden" value="'.$v['totalreply'].'" class="rank_hidden" />    
+                    </div>        
+                    ';
+                }
+           </php>
+       </div>
+    </div>
+	
+    
+<include file="Global:footer" />

@@ -1,0 +1,117 @@
+<include file="Global:header_top" />
+<script type="text/javascript" src="__PUBLIC__/visit.js"></script>
+    <div id="main">
+    <div id="user_nav">
+    	<div class="big_mask">
+            <img src="__PUBLIC__<php>echo get_avatar($he['id'],'mid');</php>" class="visit_avatar" />
+            <div class="visit_mask"></div>
+        </div>
+        <a class="<php>if(ACTION_NAME=='index'){echo 'nn';}else{echo 'nav_wrapper';}</php>" href="<php>echo U('Visit/index?uid='.$_GET['uid']);</php>">
+        	<div id="n5" class="n <php>if(ACTION_NAME=='index'){echo 'm5';}else{echo 'n5';}</php>"></div>
+            TA的提问
+        </a>
+        <a class="<php>if(ACTION_NAME=='hisreply'){echo 'nn';}else{echo 'nav_wrapper';}</php>" href="<php>echo U('Visit/hisreply?uid='.$_GET['uid']);</php>">
+        	<div id="n6" class="n <php>if(ACTION_NAME=='hisreply'){echo 'm6';}else{echo 'n6';}</php>"></div>
+            TA的回复
+        </a>
+        <a class="<php>if(ACTION_NAME=='hisagree'){echo 'nn';}else{echo 'nav_wrapper';}</php>" href="<php>echo U('Visit/hisagree?uid='.$_GET['uid']);</php>">
+        	<div id="n4" class="n <php>if(ACTION_NAME=='hisagree'){echo 'm4';}else{echo 'n4';}</php>"></div>
+            TA的赞成
+        </a>
+        <a class="<php>if(ACTION_NAME=='hisagainst'){echo 'nn';}else{echo 'nav_wrapper';}</php>" href="<php>echo U('Visit/hisagainst?uid='.$_GET['uid']);</php>">
+        	<div id="n10" class="n <php>if(ACTION_NAME=='hisagainst'){echo 'm10';}else{echo 'n10';}</php>"></div>
+            TA的反对
+        </a>
+        <a class="<php>if(ACTION_NAME=='hisrecommend'){echo 'nn';}else{echo 'nav_wrapper';}</php>" href="<php>echo U('Visit/hisrecommend?uid='.$_GET['uid']);</php>">
+        	<div id="n11" class="n <php>if(ACTION_NAME=='hisrecommend'){echo 'm11';}else{echo 'n11';}</php>"></div>
+            TA的推荐
+        </a>
+   
+        <a class="<php>if(ACTION_NAME=='hisfocus'){echo 'nn';}else{echo 'nav_wrapper';}</php>" href="<php>echo U('Visit/hisfocus?uid='.$_GET['uid']);</php>">
+        	<div id="n8" class="n <php>if(ACTION_NAME=='hisfocus'){echo 'm8';}else{echo 'n8';}</php>"></div>
+            关注的@#$sign#@
+        </a>
+        <div class="nav_wrapper" id="letter_to_him">
+        	<div id="n3" class="n n3"></div>
+            给TA私信
+        </div>
+    </div>
+    <div class="v"></div>
+    <div class="clear"></div>
+    <div id="he_profile">
+    	<div class="side_list">昵称：<a id="his_username">@#$he.name#@</a></div>
+            <div class="side_list" id="gender_div">
+            	性别：<php>$arr=array('男','女','女博士');echo $arr[$he['gender']];</php>
+            </div>
+            <div class="side_list">
+            	现居：<php>echo $he['province']?($he['province'].$he['city'].$he['county']):'暂无TA的位置信息';</php>
+            </div>
+            <div class="side_list">
+            	职业：<php>$arr=array('-----','站长','产品经理','视觉设计师','程序员','前端工程师','风险投资者','职业经理人','运营人员','人力资源','运维人员','创业者','媒体','天使','技术员','其他');echo $arr[$he['career']];</php>
+            </div>
+            <div class="side_list">
+            	标签：<php>echo $he['tag']?$he['tag']:'尚未填写标签信息';</php>
+            </div>
+            <div class="side_list">
+            	积分：<php>echo $he['score'];</php>
+            </div>
+            <div class="side_list">
+            	大学：<php>echo $he['university']?$he['university']:'尚未填写大学信息';</php>
+            </div>
+            <div class="side_list">
+            	院系：<php>echo $he['college']?$he['college']:'尚未填写学院信息';</php>
+            </div>
+            <div class="side_list">
+            	感情状态：<php>$arr=array('单身贵族','热恋中','跪求女神','跪求男神');echo $arr[$he['gender']];</php>
+            </div>
+            <div class="side_list">
+            	QQ：<php>echo $he['qqnumber']?$he['qqnumber']:'尚未填写扣扣';</php>
+            </div>
+            <div class="side_list">
+            	电话：<php>echo $he['phone']?$he['phone']:'尚未填写电话号码';</php>
+            </div>
+    </div>        
+    <div id="visit_main">
+    	<php>
+            	if($question_list==NULL)
+                	{
+                    	echo '<div id="question_error">'.$no_list.'</div>';
+                    }else{
+            	foreach($question_list as $k=>$v)
+                	{
+                    $solve=$v['issolve']==1?'已解决':'未解决';
+                    	echo '
+                        	<div class="q_wrapper">
+                                <div class="avatar_wrapper" >
+                                    <img src="__PUBLIC__'; echo get_avatar($v['uid'],'min');echo '" class="avatar" />
+                                    <img src="__PUBLIC__/css/avatar_cover.png" class="avatar_cover" />
+                                    <input type="hidden" value="'.$v['uid'].'" class="avatar_hidden" />  
+                                </div>
+                                <div class="q_list">
+                                <a href="'.U('Question/view?qid='.$v['id']).'" target="'.$setting['link_open'].'">'.$v['title'].'</a>
+                                    <div class="opt">
+                                        <div class="q_option_left"></div>
+                                        <div class="q_option_mid">
+                                            时间：'.time_mode($v['pubtime']).'<img src="__PUBLIC__/css/devider.png" />
+                                            浏览:'.$v['viewcount'].'<img src="__PUBLIC__/css/devider.png" />
+                                           	回复:'.$v['answercount'].'<img src="__PUBLIC__/css/devider.png" />
+                                            关注:'.$v['focuscount'].'<img src="__PUBLIC__/css/devider.png" />
+                                            推荐:'.$v['recommendcount'].'<img src="__PUBLIC__/css/devider.png" />
+                                            状态：'.$solve.'
+                                        </div>
+                                        <div class="q_option_right"></div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        ';
+                    }
+                    }
+            </php>
+            <div id="page" align="center">
+                @#$page#@
+            </div>
+    </div>      
+    </div>
+</div>
+<include file="Global:footer" />

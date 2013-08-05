@@ -1,0 +1,30 @@
+<?php
+class TopicModel extends RelationModel{
+		protected $_link=array(
+		'question'=>array(
+			'mapping_type'=>MANY_TO_MANY,
+			'mapping_name'=>'question',
+			'relation_foreign_key'=>'topicid',
+			'foreign_key'=>'questionid',
+			'relation_table'=>'tqid',
+		),
+		'user'=>array(
+			'mapping_type'=>MANY_TO_MANY,
+			'mapping_name'=>'user',
+			'relation_foreign_key'=>'topicid',
+			'foreign_key'=>'uid',
+			'relation_table'=>'topicfocus',
+		),
+		'tqid'=>array(
+			'mapping_type'=>HAS_MANY,
+			'mapping_name'=>'tqid',
+			'foreign_key'=>'topicid',
+		),
+		'topicfocus'=>array(
+			'mapping_type'=>HAS_MANY,
+			'mapping_name'=>'topicfocus',
+			'foreign_key'=>'topicid',
+		),
+	);
+}
+?>

@@ -1,0 +1,65 @@
+<include file="Global:header_top" />
+<script type="text/javascript" src="__PUBLIC__/masonry.js"></script>
+<script type="text/javascript" src="__PUBLIC__/rotate.js"></script>
+<script type="text/javascript">
+var me=true;
+</script>
+<script type="text/javascript" src="__PUBLIC__/topic.js"></script>
+
+<div id="main">
+	<div id="topic_head">
+    <h1 id="t_info">我关注的话题</h1>
+        <div class="tab tab_bottom">
+             <a href="<php>echo U('Topic/index');</php>" id="topic_tab1">所有话题</a>
+             <a href="<php>echo $user['id']==null?U('Account/login'):U('Topic/me');</php>" id="topic_tab2">我关注的</a>
+             <div class="<php>echo $totalcount<10?($totalcount>0?'topic_new_lessnine':'none'):'topic_new_morenine';</php>"><php>echo $totalcount<100?$totalcount:'99+'</php></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="w"></div>
+    <div id="topic_list">
+    <php>
+    if(!$topic_list)
+    	{
+        	echo ' <div id="question_error">暂无关注的话题</div>';
+        }else{
+    foreach($topic_list as $k=>$v)
+    	{
+            $des=$v['describe']?$v['describe']:'暂无详细描述，可点击"编辑话题"来编辑此内容';
+            $new_class=$v['newquestioncount']<10?($v['newquestioncount']>0?'me_lessnine':'none'):'me_morenine';
+            $newcount=$v['newquestioncount']<100?$v['newquestioncount']:'99+';
+        	echo '
+            	<div class="topic_wrapper">
+                    <div class="topic_top"></div>
+                    <div class="topic_mid">
+                        <a class="topic_name" href="'.U('Topic/view?tid='.$v['id']).'">'.$v['name'].'</a>
+                        <div class="topic_focus">取消关注</div>
+                        <div class="'.$new_class.'">'.$newcount.'</div>
+                        <div class="clear"></div>
+                        <div class="topic_describe">
+                            <img src="__PUBLIC__/css/quot_left.png" />
+                            <a>'.$des.'</a>
+                            <img src="__PUBLIC__/css/quot_right.png" />
+                        </div>
+                        <textarea class="topic_edit_textarea">'.$des.'</textarea>
+                        <div class="topic_opt">
+                            <div class="topic_questioncount">'.$sign.'数:'.$v['questioncount'].'</div>
+                            <div class="topic_edit">编辑话题</div>
+                            <input type="hidden" class="topic_id" value="'.$v['id'].'" />
+                            <div class="topic_focuscount">关注者:'.$v['focuscount'].'</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="topic_bottom"></div>
+                </div>
+            ';
+        }
+        }
+    </php>
+    </div>
+    <div class="clear"></div>
+    <div id="page" align="center">
+    @#$page#@
+    </div>  
+</div>
+<include file="Global:footer" />

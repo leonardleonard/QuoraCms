@@ -1,0 +1,65 @@
+<include file="Global:header_top" />
+<include file="User:nav" />	
+    <div id="main">
+    	<div id="altContent"></div>
+		<div id="avatar_priview"></div>
+		<script type="text/javascript" src="__PUBLIC__/swfobject.js"></script>
+		<script type="text/javascript">
+			function uploadevent(status){
+			     status += '';
+				 switch(status){
+
+					case '1':
+						tip('上传头像成功');
+					break;
+
+					case '2':
+						if(confirm('js call upload')){
+							return 1;
+						}else{
+							return 0;
+						}
+					break;
+
+					case '-1':
+						tip('取消上传头像');
+						window.location.href = "#";
+					break;
+					case '-2':
+						tip('上传头像失败');
+						window.location.href = "#";
+					break;
+
+					default:
+						tip(typeof(status) + ' ' + status);
+				} 
+			}
+
+			var flashvars = {
+			  "jsfunc":"uploadevent",
+			  "imgUrl":"__PUBLIC__/avatar/avatar_bg.jpg",
+			  "pid":"75642723",
+			  "uploadSrc":true,
+			  "showBrow":true,
+			  "showCame":true,
+			  "uploadUrl":"__PUBLIC__/avatar/avatar.php",
+			  "pSize":"300|300|160|160|74|74"
+			};
+
+			var params = {
+				menu: "false",
+				scale: "noScale",
+				allowFullscreen: "true",
+				allowScriptAccess: "always",
+				wmode:"transparent",
+				bgcolor: "#FFFFFF"
+			};
+
+			var attributes = {
+				id:"FaustCplus"
+			};
+
+			swfobject.embedSWF("__PUBLIC__/avatar/FaustCplus.swf", "altContent", "650", "500", "9.0.0", "expressInstall.swf", flashvars, params, attributes);
+		</script>
+	</div>
+<include file="Global:footer" />

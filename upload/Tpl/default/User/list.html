@@ -1,0 +1,57 @@
+<include file="Global:header_top" />
+<include file="User:nav" />	
+    <div id="main">
+    	<div id="main_left">
+        	<php>
+            	if($question_list==NULL)
+                	{
+                    	echo '<div id="question_error">'.$no_list.'</div>';
+                    }else{
+            	foreach($question_list as $k=>$v)
+                	{
+                    $solve=$v['issolve']==1?'已解决':'未解决';
+                    	echo '
+                        	<div class="q_wrapper">
+                                <div class="avatar_wrapper" >
+                                    <img src="__PUBLIC__'; echo get_avatar($v['uid'],'min');echo '" class="avatar" />
+                                    <img src="__PUBLIC__/css/avatar_cover.png" class="avatar_cover" />
+                                    <input type="hidden" value="'.$v['uid'].'" class="avatar_hidden" />  
+                                </div>
+                                <div class="q_list">
+                                <a href="'.U('Question/view?qid='.$v['id']).'" target="'.$setting['link_open'].'">'.$v['title'].'</a>
+                                    <div class="opt">
+                                        <div class="q_option_left"></div>
+                                        <div class="q_option_mid">
+                                            时间：'.time_mode($v['pubtime']).'<img src="__PUBLIC__/css/devider.png" />
+                                            浏览:'.$v['viewcount'].'<img src="__PUBLIC__/css/devider.png" />
+                                           	回复:'.$v['answercount'].'<img src="__PUBLIC__/css/devider.png" />
+                                            关注:'.$v['focuscount'].'<img src="__PUBLIC__/css/devider.png" />
+                                            推荐:'.$v['recommendcount'].'<img src="__PUBLIC__/css/devider.png" />
+                                            状态：'.$solve.'
+                                        </div>
+                                        <div class="q_option_right"></div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        ';
+                    }
+                    }
+            </php>
+            <div id="page" align="center">
+                @#$page#@
+            </div>
+         </div>
+         <div id="main_right">
+             <div class="side_wrapper">
+                <div class="side_title">热门推荐</div>
+                <php>echo S('side_recommend_question');</php>
+             </div>
+             
+             <div class="side_wrapper">
+                <div class="side_title"><php>echo $setting['is_quora']==0?'待回复的帖子':'待解决的问题'</php></div>
+                <php>echo S('side_no_reply');</php>
+             </div>
+         </div>   
+	</div>
+<include file="Global:footer" />

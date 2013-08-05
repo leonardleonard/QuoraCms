@@ -1,0 +1,20 @@
+<include file="Global:header_top" />
+<script type="text/javascript">
+var refer_url='<php>echo $_SERVER['HTTP_REFERER'];</php>';
+function swing(id)
+	{
+		$('#'+id).animate({marginLeft:"+=30"},200).animate({marginLeft:"-=60"},150).animate({marginLeft:"+=60"},100).animate({marginLeft:"-=60"},100).animate({marginLeft:"+=30"},100);
+	}
+</script>
+<script type="text/javascript" src="__PUBLIC__/account.js"></script>
+<div id="main">
+<div id="login_div">
+	<div class="account_header">站点注册已关闭</div>
+    <div id="mail_verify">
+    	 对不起，站点当前的注册功能已被管理员关闭，如有任何问题请联系管理员或是点击下方按钮返回首页~
+    </div>
+    <a id="return_a" href="__SITE__">返回首页</a>
+</div>
+</div>
+
+<include file="Global:footer" />

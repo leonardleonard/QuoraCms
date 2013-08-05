@@ -1,0 +1,90 @@
+<include file="Global:header_top" />
+<script type="text/javascript" src="__PUBLIC__/school.js"></script>
+<script type="text/javascript" src="__PUBLIC__/choosebox.js"></script>
+<script type="text/javascript" src="__PUBLIC__/jsCity.js"></script>
+<script type="text/javascript">
+var career="@#$user['career']#@";
+function init(obj_1,val_1,obj_2,val_2,obj_3,val_3){var ar=["省份","城市","区或县"];var pindex=0;var cindex=0;$("<option value=''>"+ar[0]+"</option>").appendTo($("#"+obj_1));$("<option value=''>"+ar[1]+"</option>").appendTo($("#"+obj_2));$("<option value=''>"+ar[2]+"</option>").appendTo($("#"+obj_3));for(i=0;i<mp.length;i++){if(mp[i]==val_1){pindex=i;$("<option selected>"+mp[i]+"</option>").appendTo($("#"+obj_1))}else{$("<option>"+mp[i]+"</option>").appendTo($("#"+obj_1))}}if(pindex!=0){for(n=1;n<mc[pindex].length+1;n++){if(mc[pindex][n-1]==val_2){cindex=n;$("<option selected>"+mc[pindex][n-1]+"</option>").appendTo($("#"+obj_2))}else{$("<option>"+mc[pindex][n-1]+"</option>").appendTo($("#"+obj_2))}}}if(cindex!=0){for(m=0;m<mh[pindex][cindex-1].length;m++){if(mh[pindex][cindex-1][m]==val_3){$("<option selected>"+mh[pindex][cindex-1][m]+"</option>").appendTo($("#"+obj_3))}else{$("<option>"+mh[pindex][cindex-1][m]+"</option>").appendTo($("#"+obj_3))}}}$("#"+obj_1).change(function(){pindex=$("#"+obj_1).get(0).selectedIndex;$("#"+obj_2).empty();$("<option>"+ar[1]+"</option>").appendTo($("#"+obj_2));if(pindex!=0){for(k=0;k<mc[pindex-1].length;k++){$("<option>"+mc[pindex-1][k]+"</option>").appendTo($("#"+obj_2))}}$("#"+obj_3).empty();$("<option>"+ar[2]+"</option>").appendTo($("#"+obj_3))});$("#"+obj_2).change(function(){cindex=$("#"+obj_2).get(0).selectedIndex;$("#"+obj_3).empty();$("<option>"+ar[2]+"</option>").appendTo($("#"+obj_3));if(cindex!=0){for(j=0;j<mh[pindex-1][cindex-1].length;j++){$("<option>"+mh[pindex-1][cindex-1][j]+"</option>").appendTo($("#"+obj_3))}}})}
+$(document).ready(function(e) {
+    init("province","<php>echo $user['province'];</php>","city","<php>echo $user['city'];</php>","hometown","<php>echo $user['county'];</php>");
+});
+</script>
+<include file="User:nav" />		
+    <div id="main">
+    	<div class="profile_block">
+        	<div class="profile_name">基本资料</div>
+            <div class="profile_wrapper">昵称：@#$user['name']#@</div>
+            <div class="profile_wrapper">邮箱：@#$user['email']#@</div>
+            <div class="profile_wrapper">我的邀请码(@#$user['invitecount']#@)：@#$user['invitecode']#@</div>
+            <div class="profile_wrapper" id="gender_div">
+            	性别：<a class="<php>echo $user['gender']==0?'radio_checked':'radio';</php>" name="0">男</a><a class="<php>echo $user['gender']==1?'radio_checked':'radio';</php>" name="1">女</a><a class="<php>echo $user['gender']==2?'radio_checked':'radio';</php>" name="2">女博士</a>
+                <input type="hidden" class="profile_val" id="gender" value="@#$user['gender']#@" />
+            </div>
+            <div class="profile_wrapper">
+            	现居：<select id="province" name="s_province"></select>
+                    <select id="city" name="s_city" ></select>
+                    <select id="hometown" name="s_county"></select>
+            </div>
+            <div class="profile_wrapper">
+            	职业：<select name="job_id" id="job" class="select_job"><option value="0">-----</option><option value="1">站长</option><option value="2">产品经理</option><option value="3">视觉设计师</option><option value="4">程序员</option><option value="5">前端工程师</option><option value="6">风险投资者</option><option value="7">职业经理人</option><option value="8">运营人员</option><option value="9">人力资源</option><option value="10">运维人员</option><option value="11">创业者</option><option value="12">媒体</option><option value="13">天使</option><option value="14">学生</option><option value="15">技术员</option><option value="16">其他</option></select>
+            </div>
+            <div class="profile_wrapper">
+            	<span>标签：</span><input type="text" id="tag_input" class="user_input" value="@#$user['tag']#@" />
+            </div>
+            <div class="profile_wrapper">
+            	<span>大学：</span><input type="text" class="user_input" name="school" id="school-name"  onblur="if(this.value==''){this.value=''}" onfocus="if(this.value==''){this.value=''}" onclick="pop()" value="@#$user['university']#@" />
+            </div>
+            <div class="profile_wrapper">
+            	<span>院系：</span><input type="text" id="college" class="user_input" value="@#$user['college']#@" />
+            </div>
+            <div class="profile_wrapper">
+            	感情状态：<a class="<php>echo $user['lovestate']==0?'radio_checked':'radio';</php>" name="0">单身贵族</a><a class="<php>echo $user['lovestate']==1?'radio_checked':'radio';</php>" name="1">热恋中</a><a class="<php>echo $user['lovestate']==2?'radio_checked':'radio';</php>" name="2">跪求女神</a><a class="<php>echo $user['lovestate']==3?'radio_checked':'radio';</php>" name="3">跪求男神</a>
+                <input type="hidden" class="profile_val" id="lovestate" value="@#$user['lovestate']#@" />
+            </div>
+        </div>
+        <div class="profile_block">
+            <div class="profile_name">关注我的人(<php>echo count($follow);</php>)</div>
+                <php>
+                	if($follow=='')
+                    	{
+                        	echo '<div id="no_user_follow">暂无用户关注您</div>';
+                        }else{
+                        		foreach($follow as $k=>$v)
+                                	{
+                                    	echo '<div class="avatar_wrapper user_avatar">
+                                                  <img src="__PUBLIC__'.get_avatar($v['myid'],'min').'" class="avatar" />
+                                                  <img src="__PUBLIC__/css/avatar_cover.png" class="avatar_cover" /> 
+                                                  <input type="hidden" value="'.$v['myid'].'" class="avatar_hidden" /> 
+                                             </div>';
+                                    }	
+                        	 }
+                </php>
+            <div class="clear"></div>
+         </div>
+         <div class="profile_block">
+            <div class="profile_name">联系方式</div>
+            <div class="profile_wrapper left">
+            	<span>QQ&nbsp;：</span><input type="text" class="user_input" id="qq" value="@#$user['qqnumber']#@" />
+            </div>
+            <div class="profile_wrapper left">
+            	<span>电话：</span><input type="text" id="phone" class="user_input" value="@#$user['phone']#@" />
+            </div>
+            <div class="clear"></div><br /><br />
+         </div>
+         <div class="w"></div>
+         <div class="rect_button save" id="save_user">保存</div>
+    </div>
+   
+    <div id="choose-box-wrapper">
+	<div id="choose-box">
+		<div id="choose-box-title">
+			<span>选择学校</span>
+		</div>
+		<div id="choose-a-province"></div>
+		<div id="choose-a-school"></div>
+		<div id="choose-box-bottom">
+			<input type="button" onclick="hide()" value="关闭" />
+		</div>
+	</div>
+</div>
+<include file="Global:footer" />

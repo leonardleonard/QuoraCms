@@ -1,0 +1,43 @@
+<include file="Global:header_top" />
+<include file="User:nav" />	
+<div id="main">
+<div class="button_normal" id="new_letter">新站内信</div>
+<php>
+if($letter==NULL)
+	{
+    	echo '<div id="question_error">暂无站内信</div>';
+    }else{
+	foreach($letter as $k=>$v)
+    	{
+        	echo '
+            	<div class="letter_wrapper">
+    	<a class="letter_preview" href="'.U('User/letterview?lid='.$v['id']).'">
+        '.getsubstr($v['content'],0,60).'
+        </a>
+		<div class="avatar_wrapper">
+             <img src="__PUBLIC__'; echo get_avatar($v['to'],'min'); echo '" class="avatar" />
+             <img src="__PUBLIC__/css/avatar_cover.png" class="avatar_cover" />
+             <input type="hidden" value="'.$v['to'].'" class="avatar_hidden" /> 
+        </div>
+        <img src="__PUBLIC__/css/letter_arrow.png" class="letter_arrow" />
+        <div class="avatar_wrapper">
+             <img src="__PUBLIC__'; echo get_avatar($v['from'],'min'); echo '" class="avatar" />
+             <img src="__PUBLIC__/css/avatar_cover.png" class="avatar_cover" /> 
+             <input type="hidden" value="'.$v['from'].'" class="avatar_hidden" />
+        </div>
+        <div class="clear"></div>
+        <div class="letter_opt">
+        	<div class="letter_opt_time">创建时间:'.time_mode($v['addtime']).'</div>
+            <div class="letter_opt_talk">共'.$v['lettercount'].'条会话</div>
+            <div class="clear"></div>
+        </div>    	
+    </div>
+            ';
+        }
+        }
+</php>
+<div id="page" align="center">
+	@#$page#@
+</div>
+</div>
+<include file="Global:footer" />

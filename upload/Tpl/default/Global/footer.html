@@ -1,0 +1,42 @@
+<div class="clear"></div>    
+<div id="letter_div">
+    	<div id="letter_name">站内信</div>
+        <div id="letter_close"></div>
+        <input type="text" id="letter_input" />
+        <textarea id="letter_textarea"></textarea>
+        <div id="letter_sub">发 送</div>
+    </div>
+	<div id="roll">
+    	<div title="回到顶部" id="roll_top"></div>
+        	<php>echo $user['id']!=NULL?'<a id="ct" href="'.U('Question/publish').'" title="快速发布"></a>':'';</php>
+            <div title="转到底部" id="fall"></div>
+        </div>    
+<div id="cover"></div>
+<div id="tip">
+	<div id="tip_left"></div>
+    <div id="tip_mid"></div>
+    <div id="tip_right"></div>
+</div>
+
+<div id="info_window">
+    	<a id="info_left" href="" target="_blank">
+        	<img class="info_avatar" />
+            <div class="info_mask"></div>
+        </a>
+        <div id="info_mid">
+        	
+        </div>
+        <div id="info_right">
+        
+        </div>
+</div>
+<div id="footer">
+	<!--container of the ajax loading data, fobbiden deleting-->
+	<div id="data"></div>
+    <!--container of the ajax loading data, fobbiden deleting-->
+    <input type="hidden" name="ha" id="ha" value="@#$ha#@" />
+    <div id="copyright">Copyright &copy; 2012-2013 - QuoraCms社会化问答程序</div>
+    <a href="http://www.miibeian.gov.cn/" id="icp_a" target="_blank">@#$setting.icp#@</a>
+</div>  
+</body>
+</html>
